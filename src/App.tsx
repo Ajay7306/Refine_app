@@ -5,6 +5,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
@@ -14,11 +15,11 @@ import { App as AntdApp } from "antd";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { authProvider } from "./authProvider";
 import { ColorModeContextProvider } from "./contexts/color-mode";
+import { Home, ForgotPassword, Register, Login } from "./pages";
 
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <AntdApp>
@@ -35,13 +36,15 @@ function App() {
                 }}
               >
                 <Routes>
-                  <Route index element={<WelcomePage />} />
+                  <Route index element={<Home />} />
+                  <Route path="/forgot-password" element={<ForgotPassword/>} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
                 </Routes>
                 <RefineKbar />
                 <UnsavedChangesNotifier />
                 <DocumentTitleHandler />
               </Refine>
-              <DevtoolsPanel />
             </DevtoolsProvider>
           </AntdApp>
         </ColorModeContextProvider>
